@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SynPlayer</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <link rel="stylesheet" href="styles/styles.css" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="label">
+        <p id="label">SynPlayer</p>
+      </div>
+      <div class="player">
+        <video id="media-video" controls>
+          <source type="video/mp4" id="video" />
+        </video>
+      </div>
+    </div>
+    <script src="./js/Menu.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
