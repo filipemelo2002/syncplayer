@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>SynPlayer</title>
+    <script src="https://unpkg.com/feather-icons"></script>
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <link rel="stylesheet" href="styles/styles.css" />
     <meta
@@ -13,8 +14,69 @@
   <body>
     <div class="container">
       <div class="welcome-container">
-        <div>
+        <div id="welcome-text">
           <h1>Welcome to SyncPlayer</h1>
+        </div>
+        <div id="presentation-content">
+          <img src="./assets/illustration.svg" height="350px" />
+          <div id="presentation-texts">
+            <p>
+              I started this project due to the lack of watching things
+              sychronously on my computer along with somebody else, who wasn't
+              physically with me. As the name suggests, this program syncs the
+              <i>"play"</i> and <i>"pause"</i> buttons, allowing you to watch
+              more confortably with somebody who is in another computer. This
+              project is part of my studies in Electron, and I am not
+              responsible for your misuse.
+            </p>
+            <div id="contact-info">
+              <p id="myGithub">
+                <i
+                  data-feather="github"
+                  style="width: 20px; height: 20px; margin-right: 5px;"
+                ></i>
+                Github profile
+              </p>
+              <p id="myLinkedin">
+                <i
+                  data-feather="linkedin"
+                  style="width: 20px; height: 20px; margin-right: 5px;"
+                ></i>
+                LinkedIn account
+              </p>
+              <p id="myPortfolio">
+                <i
+                  data-feather="book"
+                  style="width: 20px; height: 20px; margin-right: 5px;"
+                ></i>
+                Portfolio
+              </p>
+            </div>
+
+            <button id="watch">
+              <i
+                data-feather="film"
+                style="width: 20px; height: 20px; margin-right: 5px;"
+              ></i
+              >Start Watching
+            </button>
+          </div>
+        </div>
+        <div id="footer">
+          <p>
+            <i
+              data-feather="package"
+              style="width: 20px; height: 20px; margin-right: 5px;"
+            ></i>
+            Version 1.0
+          </p>
+          <p id="repository">
+            <i
+              data-feather="github"
+              style="width: 20px; height: 20px; margin-right: 5px;"
+            ></i>
+            Github Repository
+          </p>
         </div>
       </div>
 
@@ -29,7 +91,11 @@
         </div>
       </div>
     </div>
+    <script>
+      feather.replace();
+    </script>
     <script src="./js/Menu.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/open_external.js"></script>
   </body>
 </html>

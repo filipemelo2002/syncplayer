@@ -2,6 +2,9 @@ const { remote } = require("electron");
 const { dialog } = remote;
 const path = require("path");
 
+const welcomeContainer = document.querySelector(".welcome-container");
+const watchNow = document.querySelector("#watch");
+
 const label = document.querySelector("#label");
 const source = document.getElementById("media-video");
 const video = document.getElementById("video");
@@ -24,8 +27,11 @@ const click = async () => {
     const sanitizedPath = filePaths[0].replace(/\\/g, "/");
     video.src = `file:///${sanitizedPath}`;
     source.load();
+    welcomeContainer.style.setProperty("display", "none");
   }
 };
+
+watchNow.addEventListener("click", click);
 module.exports = [
   {
     label: "Open",
