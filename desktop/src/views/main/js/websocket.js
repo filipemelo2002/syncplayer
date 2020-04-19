@@ -5,7 +5,7 @@ const socket = io("http://192.168.0.7:5500", { autoConnect: false });
 const myId = document.getElementById("myId");
 const switcher = document.querySelector("#switcher");
 const friendId = document.querySelector("#friendId");
-
+const video = document.querySelector("#media-video");
 const connect = () => {
   if (socket.disconnected) {
     socket.connect();
@@ -13,6 +13,7 @@ const connect = () => {
     retrieveConnectionStatus();
     connectionDisabled();
     userNotExists();
+    mediaEvents();
   }
 };
 const retrieveUserId = () => {
@@ -82,6 +83,18 @@ const userNotExists = () => {
 const disconnectUser = (friendId) => {
   socket.emit("connection-disconnect", friendId);
 };
+
+const mediaEvents = () => {
+  socket.on("media-play", () => {
+    if (video.paused) video.play();
+  });
+  socket.on("media-pause", () => {
+    if (!video.paused) video.pause();
+  });
+  socket.on("media-seeking", (timeStamp) => {
+    if (video.currentTime !== timeStamp) video.currentTime = timeStamp;
+  });
+};
 const disconnect = () => {
   if (socket.connected) {
     socket.disconnect();
@@ -103,4 +116,19 @@ switcher.addEventListener("change", ({ target }) => {
     friendId.disabled = false;
     disconnectUser(friendId.value);
   }
+});
+
+video.addEventListener("play", () => {
+  socket.emit("media-play", friendId.value);
+});
+
+video.addEventListener("pause", () => {
+  socket.emit("media-pause", friendId.value);
+});
+
+video.addEventListener("seeking", ({ target }) => {
+  socket.emit("media-seeking", {
+    timeStamp: target.currentTime,
+    id: friendId.value,
+  });
 });

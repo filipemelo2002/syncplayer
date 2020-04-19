@@ -22,6 +22,18 @@ class WebSocket {
   emitDisconnectedConnection(id) {
     this.msgToBroadcast(id, "connection-disconnected");
   }
+
+  emitMediaPlay(id) {
+    this.msgToBroadcast(id, "media-play");
+  }
+
+  emitMediaPause(id) {
+    this.msgToBroadcast(id, "media-pause");
+  }
+
+  emitMediaSeek(id, timeStamp) {
+    this.socket.to(id).emit("media-seeking", timeStamp);
+  }
 }
 
 module.exports = WebSocket;

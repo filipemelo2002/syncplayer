@@ -57,4 +57,31 @@ io.on("connection", (socket) => {
       console.log("COULDN'T DISCONNECT FROM " + userId);
     }
   });
+
+  socket.on("media-play", (id) => {
+    const user = connected.find(({ user_id }) => user_id == id);
+    if (user) {
+      mySocket.emitMediaPlay(user.id);
+    } else {
+      console.log("NO USER FOUND");
+    }
+  });
+
+  socket.on("media-pause", (id) => {
+    const user = connected.find(({ user_id }) => user_id == id);
+    if (user) {
+      mySocket.emitMediaPause(user.id);
+    } else {
+      console.log("NO USER FOUND");
+    }
+  });
+
+  socket.on("media-seeking", ({ id, timeStamp }) => {
+    const user = connected.find(({ user_id }) => user_id == id);
+    if (user) {
+      mySocket.emitMediaSeek(user.id, timeStamp);
+    } else {
+      console.log("NO USER FOUND");
+    }
+  });
 });
