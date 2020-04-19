@@ -11,6 +11,8 @@ const connect = () => {
     socket.connect();
     retrieveUserId();
     retrieveConnectionStatus();
+    connectionDisabled();
+    userNotExists();
   }
 };
 const retrieveUserId = () => {
@@ -22,10 +24,12 @@ const retrieveUserId = () => {
 const retrieveConnectionStatus = () => {
   socket.on("connetion-accepted", (id) => {
     console.log("CONNECTED TO " + id);
+    switcher.checked = true;
+    friendId.disabled = true;
   });
 
   socket.on("connetion-refused", () => {
-    console.log("CONNECTION REFUSED");
+    switcher.checked = false;
   });
 };
 
@@ -46,6 +50,9 @@ const connectionRequestDialog = async (from) => {
   };
   const { response } = await dialog.showMessageBox(options);
   if (response === 0) {
+    friendId.value = from;
+    friendId.disabled = true;
+    switcher.checked = true;
     emitAcceptedConnection(from);
   } else {
     emitRefusedConnection(from);
@@ -57,11 +64,24 @@ const connectionRequest = () => {
     connectionRequestDialog(from);
   });
 };
-
+const connectionDisabled = () => {
+  socket.on("connection-disconnected", () => {
+    switcher.checked = false;
+    friendId.disabled = false;
+  });
+};
 const tryConnection = (from, to) => {
   socket.emit("connection-try", { from, to });
 };
-
+const userNotExists = () => {
+  socket.on("connection-user-not-found", () => {
+    friendId.style.setProperty("border", "2px solid #ff2b2b");
+    switcher.checked = false;
+  });
+};
+const disconnectUser = (friendId) => {
+  socket.emit("connection-disconnect", friendId);
+};
 const disconnect = () => {
   if (socket.connected) {
     socket.disconnect();
@@ -72,6 +92,15 @@ connectionRequest();
 
 switcher.addEventListener("change", ({ target }) => {
   if (target.checked) {
-    tryConnection(myId.innerHTML, friendId.value);
+    if (friendId.value.length > 0 && friendId.value !== myId.innerHTML) {
+      friendId.style.setProperty("border", "none");
+      tryConnection(myId.innerHTML, friendId.value);
+    } else {
+      friendId.style.setProperty("border", "2px solid #ff2b2b");
+      target.checked = false;
+    }
+  } else {
+    friendId.disabled = false;
+    disconnectUser(friendId.value);
   }
 });

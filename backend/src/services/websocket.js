@@ -18,6 +18,10 @@ class WebSocket {
   emitAcceptedConnection(id, user_id) {
     this.msgToBroadcast(id, "connetion-accepted", user_id);
   }
+
+  emitDisconnectedConnection(id) {
+    this.msgToBroadcast(id, "connection-disconnected");
+  }
 }
 
 module.exports = WebSocket;
