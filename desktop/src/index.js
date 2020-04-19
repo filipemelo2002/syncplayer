@@ -19,7 +19,7 @@ function createWindow() {
   });
 
   win.loadFile(path.resolve(__dirname, "views", "main", "index.html"));
-  //win.webContents.openDevTools();
+  win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {

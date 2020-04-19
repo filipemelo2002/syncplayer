@@ -6,6 +6,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/switcher.css" />
     <meta
       http-equiv="Content-Security-Policy"
       content="script-src 'self' 'unsafe-inline';"
@@ -52,7 +53,25 @@
                 Portfolio
               </p>
             </div>
-
+            <div id="connection">
+              <div id="floating-content">
+                <i
+                  data-feather="link"
+                  style="width: 20px; height: 20px; margin-right: 5px;"
+                ></i>
+                <p id="myId"></p>
+              </div>
+              <div id="floating-content">
+                or
+              </div>
+              <div id="floating-content">
+                <input id="friendId" placeholder="Insert a user's id here" />
+                <label class="switch">
+                  <input type="checkbox" name="switcher" id="switcher" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
             <button id="watch">
               <i
                 data-feather="film"
@@ -94,6 +113,7 @@
     <script>
       feather.replace();
     </script>
+    <script src="./js/websocket.js"></script>
     <script src="./js/Menu.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/open_external.js"></script>

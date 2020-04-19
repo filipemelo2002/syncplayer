@@ -76,6 +76,26 @@ button,
   transition: all 200ms ease;
   cursor: pointer;
 }
+#connection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#floating-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+#friendId {
+  padding: 9px;
+  border: none;
+  border-radius: 8px;
+  margin-right: 5px;
+  font-size: 1rem;
+}
+
 #contact-info p:hover,
 #footer p:hover {
   color: #9e9e9e;
