@@ -7,6 +7,7 @@
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/switcher.css" />
+    <link rel="stylesheet" href="styles/controls.css" />
     <meta
       http-equiv="Content-Security-Policy"
       content="script-src 'self' 'unsafe-inline';"
@@ -103,10 +104,58 @@
         <div class="label">
           <p id="label">SynPlayer</p>
         </div>
-        <div class="player">
-          <video id="media-video" controls>
-            <source type="video/mp4" id="video" />
-          </video>
+        <div id="video-container">
+          <div class="player">
+            <video id="media-video" controls="false">
+              <source type="video/mp4" id="video" />
+            </video>
+          </div>
+          <div class="player-controls">
+            <div class="progress-frame">
+              <progress value="0.5" max="1" id="progress"></progress>
+            </div>
+            <div class="options-frame">
+              <div class="play-pause-frame">
+                <img
+                  id="play-pause"
+                  src="./assets/play-circle.svg"
+                  width="35"
+                  height="35"
+                />
+                <div class="timeStamps">
+                  <span id="currentTime">00:00:00</span>
+                </div>
+              </div>
+              <div class="maximize-minimize-frame">
+                <div class="timeStamps"><span id="totalTime"></span></div>
+                <div class="volume-control">
+                  <img
+                    id="volumeIndicator"
+                    src="./assets/volume-2.svg"
+                    style="margin-right: 5px;"
+                    width="20"
+                    height="20"
+                  />
+                  <input
+                    type="range"
+                    id="volumebar"
+                    class="volumebar"
+                    value="1"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                  />
+                </div>
+
+                <img
+                  id="maximize-minimize"
+                  width="35"
+                  height="35"
+                  src="./assets/maximize.svg"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -117,6 +166,7 @@
     <script src="./js/Menu.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/websocket.js"></script>
+    <script src="./js/controls.js"></script>
     <script src="./js/open_external.js"></script>
   </body>
 </html>

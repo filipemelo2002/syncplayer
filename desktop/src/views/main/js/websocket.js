@@ -1,6 +1,8 @@
 const { dialog } = require("electron").remote;
 const io = require("socket.io-client");
-const socket = io("http://192.168.0.7:5500", { autoConnect: false });
+const socket = io("https://syncplayer-backend.herokuapp.com/", {
+  autoConnect: false,
+});
 
 const myId = document.getElementById("myId");
 const switcher = document.querySelector("#switcher");
@@ -116,19 +118,4 @@ switcher.addEventListener("change", ({ target }) => {
     friendId.disabled = false;
     disconnectUser(friendId.value);
   }
-});
-
-video.addEventListener("play", () => {
-  socket.emit("media-play", friendId.value);
-});
-
-video.addEventListener("pause", () => {
-  socket.emit("media-pause", friendId.value);
-});
-
-video.addEventListener("seeking", ({ target }) => {
-  socket.emit("media-seeking", {
-    timeStamp: target.currentTime,
-    id: friendId.value,
-  });
 });

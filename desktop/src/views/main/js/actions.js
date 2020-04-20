@@ -8,7 +8,6 @@ const watchNow = document.querySelector("#watch");
 const label = document.querySelector("#label");
 const source = document.getElementById("media-video");
 const video = document.getElementById("video");
-
 const click = async () => {
   const { filePaths } = await dialog.showOpenDialog({
     filters: [

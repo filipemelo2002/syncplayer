@@ -1,11 +1,11 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
-// Enable live reload for Electron too
-require("electron-reload")(__dirname, {
-  // Note that the path to electron may vary according to the main file
-  electron: require(path.resolve(__dirname, "..", "node_modules", "electron")),
-});
+// // Enable live reload for Electron too
+// require("electron-reload")(__dirname, {
+//   // Note that the path to electron may vary according to the main file
+//   electron: require(path.resolve(__dirname, "..", "node_modules", "electron")),
+// });
 function createWindow() {
   // Cria uma janela de navegação.
   const win = new BrowserWindow({
@@ -19,7 +19,7 @@ function createWindow() {
   });
 
   win.loadFile(path.resolve(__dirname, "views", "main", "index.html"));
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
