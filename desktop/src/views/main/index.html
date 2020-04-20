@@ -108,6 +108,7 @@
           <div class="player">
             <video id="media-video" controls="false">
               <source type="video/mp4" id="video" />
+              <track kid="subtitle" srclang="pt" id="caption" default />
             </video>
           </div>
           <div class="player-controls">
@@ -123,7 +124,7 @@
                   height="35"
                 />
                 <div class="timeStamps">
-                  <span id="currentTime">00:00:00</span>
+                  <span id="currentTime">--:--:--</span>
                 </div>
               </div>
               <div class="maximize-minimize-frame">
@@ -146,7 +147,12 @@
                     step="0.1"
                   />
                 </div>
-
+                <img
+                  id="captions"
+                  width="35"
+                  height="35"
+                  src="./assets/deaf.svg"
+                />
                 <img
                   id="maximize-minimize"
                   width="35"
@@ -164,6 +170,7 @@
     </script>
 
     <script src="./js/Menu.js"></script>
+    <script src="./js/loadsrt.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/websocket.js"></script>
     <script src="./js/controls.js"></script>
