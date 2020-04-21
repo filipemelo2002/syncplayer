@@ -26,6 +26,7 @@ const click = async () => {
     const sanitizedPath = filePaths[0].replace(/\\/g, "/");
     video.src = `file:///${sanitizedPath}`;
     source.load();
+    video.focus();
     welcomeContainer.style.setProperty("display", "none");
   }
 };
